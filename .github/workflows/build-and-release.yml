@@ -39,6 +39,12 @@ jobs:
 
           /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_NAME" --options runtime ./build/Brewster.app -v
 
+      - name: Extract version number
+        id: extract_version
+        run: |
+          VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "./build/Brewster.app/Contents/Info.plist")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
       - name: "Notarize app bundle"
         # Extract the secrets we defined earlier as environment variables
         env:
@@ -85,8 +91,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: latest
-          release_name: Latest Release
+          tag_name: v${{ env.VERSION }}
+          release_name: Release ${{ env.VERSION }}
           draft: false
           prerelease: false
 
