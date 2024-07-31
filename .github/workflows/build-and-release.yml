@@ -17,10 +17,6 @@ jobs:
         run: |
           sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 
-      - name: Build project
-        run: |
-          xcodebuild -project Brewster.xcodeproj -scheme Brewster -configuration Release CONFIGURATION_BUILD_DIR=./build
-
       - name: Codesign app bundle
         env:
           MACOS_CERTIFICATE: ${{ secrets.PROD_MACOS_CERTIFICATE }}
@@ -35,6 +31,10 @@ jobs:
           security unlock-keychain -p "$MACOS_CI_KEYCHAIN_PWD" build.keychain
           security import certificate.p12 -k build.keychain -P "$MACOS_CERTIFICATE_PWD" -T /usr/bin/codesign
           security set-key-partition-list -S apple-tool:,apple:,codesign: -s -k "$MACOS_CI_KEYCHAIN_PWD" build.keychain
+
+      - name: Build project
+        run: |
+          xcodebuild -project Brewster.xcodeproj -scheme Brewster -configuration Release CONFIGURATION_BUILD_DIR=./build
 
           /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_NAME" --options runtime ./build/Brewster.app -v
 
