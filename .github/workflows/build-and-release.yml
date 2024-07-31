@@ -39,12 +39,6 @@ jobs:
 
           /usr/bin/codesign --force -s "$MACOS_CERTIFICATE_NAME" --options runtime ./build/Brewster.app -v
 
-      - name: Extract version number
-        id: extract_version
-        run: |
-          VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "./build/Brewster.app/Contents/Info.plist")
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
-
       - name: "Notarize app bundle"
         # Extract the secrets we defined earlier as environment variables
         env:
@@ -75,6 +69,18 @@ jobs:
           name: Brewster-zip
           path: ./build/Brewster.zip
 
+      - name: Extract version number
+        id: extract_version
+        run: |
+          VERSION=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "./build/Brewster.app/Contents/Info.plist")
+          echo "$VERSION" > version.txt
+
+      - name: Upload version number
+        uses: actions/upload-artifact@v3
+        with:
+          name: version-info
+          path: version.txt
+
   release:
     needs: build
     runs-on: ubuntu-latest
@@ -85,13 +91,24 @@ jobs:
         with:
           name: Brewster-zip
 
+      - name: Download version number
+        uses: actions/download-artifact@v3
+        with:
+          name: version-info
+
+      - name: Read version number
+        id: read_version
+        run: |
+          VERSION=$(cat version.txt)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ env.VERSION }}
+          tag_name: ${{ env.VERSION }}
           release_name: Release ${{ env.VERSION }}
           draft: false
           prerelease: false
