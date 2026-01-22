@@ -6,11 +6,40 @@ Brewster is a macOS menu bar application that checks for Homebrew updates.
 
 - Checks for Homebrew updates and displays the number of updates available in the menu bar.
 - Allows users to refresh, run Homebrew update commands in the terminal, and set the application to start at login.
+- Install new Homebrew packages directly from the menu bar (Options > Install Package...).
+
+## Installation
+
+### Homebrew (Recommended)
+
+Install Brewster using [Homebrew](https://brew.sh):
+
+```bash
+brew tap shmoopi/brewster https://github.com/shmoopi/Brewster
+brew install --cask brewster
+```
+
+To upgrade to the latest version:
+
+```bash
+brew upgrade --cask brewster
+```
+
+To uninstall:
+
+```bash
+brew uninstall --cask brewster
+```
+
+### Manual Installation
+
+1. Download the latest `Brewster.zip` from the [Releases page](https://github.com/shmoopi/Brewster/releases)
+2. Unzip and drag `Brewster.app` to your Applications folder
+3. Launch Brewster from Applications
 
 ## Requirements
 
-- macOS 10.14 or later
-- Xcode 12 or later
+- macOS 13 (Ventura) or later
 - Homebrew installed
 
 ## Contributing

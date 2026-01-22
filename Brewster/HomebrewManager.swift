@@ -34,6 +34,7 @@ protocol HomebrewExecutable {
     func getHomebrewUpdates(runUpdateFirst: Bool) -> Result<[String], HomebrewError>
     func upgradePackage(package: String) -> Result<Void, HomebrewError>
     func upgradeAllPackages() -> Result<Void, HomebrewError>
+    func installPackage(package: String) -> Result<Void, HomebrewError>
 }
 
 // Default timeout values
@@ -255,6 +256,18 @@ class HomebrewManager: HomebrewExecutable {
             return .success(())
         case .failure(let error):
             logger.error("Failed to upgrade all packages: \(error.localizedDescription)")
+            return .failure(error)
+        }
+    }
+
+    func installPackage(package: String) -> Result<Void, HomebrewError> {
+        logger.info("Installing package: \(package)")
+        switch runCommand(arguments: ["install", package], timeout: upgradeCommandTimeout) {
+        case .success:
+            logger.info("Successfully installed \(package)")
+            return .success(())
+        case .failure(let error):
+            logger.error("Failed to install \(package): \(error.localizedDescription)")
             return .failure(error)
         }
     }

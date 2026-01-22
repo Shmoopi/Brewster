@@ -10,7 +10,7 @@ import ServiceManagement
 import UserNotifications
 import os.log
 
-private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.shmoopi.Brewster", category: "StatusBarController")
+private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "net.shmoopi.Brewster", category: "StatusBarController")
 
 class StatusBarController: NSObject, NSMenuDelegate {
 
@@ -168,6 +168,11 @@ class StatusBarController: NSObject, NSMenuDelegate {
         let runInTerminalItem = NSMenuItem(title: "Run in Terminal", action: #selector(runInTerminal), keyEquivalent: "t")
         runInTerminalItem.target = self
         submenu.addItem(runInTerminalItem)
+
+        // Install Package item
+        let installItem = NSMenuItem(title: "Install Package...", action: #selector(showInstallDialog), keyEquivalent: "i")
+        installItem.target = self
+        submenu.addItem(installItem)
 
         // Add frequency submenu
         let intervalSubmenu = NSMenu()
@@ -421,6 +426,85 @@ class StatusBarController: NSObject, NSMenuDelegate {
         } catch {
             logger.error("Failed to run Terminal script: \(error.localizedDescription)")
         }
+    }
+
+    @objc private func showInstallDialog() {
+        let alert = NSAlert()
+        alert.messageText = "Install Homebrew Package"
+        alert.informativeText = "Enter the name of the package to install:"
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "Install")
+        alert.addButton(withTitle: "Cancel")
+
+        let inputTextField = NSTextField(frame: NSRect(x: 0, y: 0, width: 200, height: 24))
+        inputTextField.placeholderString = "package-name"
+        alert.accessoryView = inputTextField
+
+        let response = alert.runModal()
+        if response == .alertFirstButtonReturn {
+            let packageName = inputTextField.stringValue.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !packageName.isEmpty {
+                installPackage(packageName)
+            }
+        }
+    }
+
+    private func installPackage(_ package: String) {
+        // Guard against concurrent operations
+        guard !isOperationInProgress else {
+            logger.debug("Install skipped - operation already in progress")
+            return
+        }
+
+        isOperationInProgress = true
+        logger.info("Installing package: \(package)")
+
+        // Set the title to brewing
+        statusItem.button?.title = "Brewing..."
+
+        // Update menu to show installing status
+        clearAllMenuBarItems()
+
+        let installingMenuItem = NSMenuItem(title: "Installing \(package)...", action: nil, keyEquivalent: "")
+        statusItem.menu?.addItem(installingMenuItem)
+
+        statusItem.menu?.addItem(.separator())
+
+        if let menu = statusItem.menu {
+            setupBottomMenu(menu)
+        }
+
+        // Install the package
+        DispatchQueue.global().async {
+            let result = self.homebrewManager.installPackage(package: package)
+            DispatchQueue.main.async {
+                self.isOperationInProgress = false
+                self.handleInstallResult(result, package: package)
+            }
+        }
+    }
+
+    private func handleInstallResult(_ result: Result<Void, HomebrewError>, package: String) {
+        switch result {
+        case .success:
+            logger.info("Package \(package) installed successfully")
+            self.showInstallSuccess(package: package)
+        case .failure(let error):
+            logger.error("Package install failed: \(error.localizedDescription)")
+            self.showError(error: error)
+        }
+    }
+
+    private func showInstallSuccess(package: String) {
+        let alert = NSAlert()
+        alert.messageText = "Installation Complete"
+        alert.informativeText = "\(package) has been installed successfully."
+        alert.alertStyle = .informational
+        alert.addButton(withTitle: "OK")
+        alert.runModal()
+
+        // Refresh updates list
+        refreshUpdates()
     }
 
     @objc private func quitApp() {
