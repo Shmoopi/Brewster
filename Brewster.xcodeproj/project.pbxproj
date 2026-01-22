@@ -14,7 +14,21 @@
 		4CB36CC52C434F4D00A97A5D /* HomebrewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB36CC42C434F4D00A97A5D /* HomebrewManager.swift */; };
 		4CB36CC92C44DE2B00A97A5D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB36CC82C44DE2B00A97A5D /* main.swift */; };
 		4CB36CE32C44F44700A97A5D /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CB36CE22C44F44700A97A5D /* ServiceManagement.framework */; };
+		AABBCC001122334400112233 /* HMOutdatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBCC011122334400112233 /* HMOutdatedTests.swift */; };
+		AABBCC021122334400112233 /* MockHomebrewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBCC031122334400112233 /* MockHomebrewManager.swift */; };
+		AABBCC041122334400112233 /* HomebrewManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBCC051122334400112233 /* HomebrewManagerTests.swift */; };
+		AABBCC061122334400112233 /* TimeIntervalOptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AABBCC071122334400112233 /* TimeIntervalOptionTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AABBCC101122334400112233 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4CB36CA82C434E0000A97A5D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4CB36CAF2C434E0000A97A5D;
+			remoteInfo = Brewster;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4C61EFAC2C46361C00584010 /* Brewster.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Brewster.entitlements; sourceTree = "<group>"; };
@@ -26,6 +40,11 @@
 		4CB36CC42C434F4D00A97A5D /* HomebrewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomebrewManager.swift; sourceTree = "<group>"; };
 		4CB36CC82C44DE2B00A97A5D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		4CB36CE22C44F44700A97A5D /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
+		AABBCC011122334400112233 /* HMOutdatedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HMOutdatedTests.swift; sourceTree = "<group>"; };
+		AABBCC031122334400112233 /* MockHomebrewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockHomebrewManager.swift; sourceTree = "<group>"; };
+		AABBCC051122334400112233 /* HomebrewManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomebrewManagerTests.swift; sourceTree = "<group>"; };
+		AABBCC071122334400112233 /* TimeIntervalOptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeIntervalOptionTests.swift; sourceTree = "<group>"; };
+		AABBCC081122334400112233 /* BrewsterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrewsterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +56,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AABBCC091122334400112233 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -44,6 +70,7 @@
 			isa = PBXGroup;
 			children = (
 				4CB36CB22C434E0000A97A5D /* Brewster */,
+				AABBCC0A1122334400112233 /* BrewsterTests */,
 				4CB36CB12C434E0000A97A5D /* Products */,
 				4CB36CE12C44F44700A97A5D /* Frameworks */,
 			);
@@ -53,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				4CB36CB02C434E0000A97A5D /* Brewster.app */,
+				AABBCC081122334400112233 /* BrewsterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +107,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AABBCC0A1122334400112233 /* BrewsterTests */ = {
+			isa = PBXGroup;
+			children = (
+				AABBCC011122334400112233 /* HMOutdatedTests.swift */,
+				AABBCC031122334400112233 /* MockHomebrewManager.swift */,
+				AABBCC051122334400112233 /* HomebrewManagerTests.swift */,
+				AABBCC071122334400112233 /* TimeIntervalOptionTests.swift */,
+			);
+			path = BrewsterTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -99,6 +138,24 @@
 			productReference = 4CB36CB02C434E0000A97A5D /* Brewster.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AABBCC0B1122334400112233 /* BrewsterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AABBCC0C1122334400112233 /* Build configuration list for PBXNativeTarget "BrewsterTests" */;
+			buildPhases = (
+				AABBCC0D1122334400112233 /* Sources */,
+				AABBCC091122334400112233 /* Frameworks */,
+				AABBCC0E1122334400112233 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AABBCC111122334400112233 /* PBXTargetDependency */,
+			);
+			name = BrewsterTests;
+			productName = BrewsterTests;
+			productReference = AABBCC081122334400112233 /* BrewsterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -107,10 +164,14 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1540;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					4CB36CAF2C434E0000A97A5D = {
 						CreatedOnToolsVersion = 15.4;
+					};
+					AABBCC0B1122334400112233 = {
+						CreatedOnToolsVersion = 15.4;
+						TestTargetID = 4CB36CAF2C434E0000A97A5D;
 					};
 				};
 			};
@@ -128,6 +189,7 @@
 			projectRoot = "";
 			targets = (
 				4CB36CAF2C434E0000A97A5D /* Brewster */,
+				AABBCC0B1122334400112233 /* BrewsterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -138,6 +200,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB36CB82C434E0100A97A5D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AABBCC0E1122334400112233 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,7 +225,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AABBCC0D1122334400112233 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AABBCC001122334400112233 /* HMOutdatedTests.swift in Sources */,
+				AABBCC021122334400112233 /* MockHomebrewManager.swift in Sources */,
+				AABBCC041122334400112233 /* HomebrewManagerTests.swift in Sources */,
+				AABBCC061122334400112233 /* TimeIntervalOptionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AABBCC111122334400112233 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4CB36CAF2C434E0000A97A5D /* Brewster */;
+			targetProxy = AABBCC101122334400112233 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4CB36CBD2C434E0100A97A5D /* Debug */ = {
@@ -193,7 +281,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Q2636DAEP4;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -217,6 +307,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -256,7 +347,9 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = Q2636DAEP4;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -273,6 +366,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -287,7 +381,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Q2636DAEP4;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Brewster;
@@ -299,7 +393,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.shmoopi.Brewster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -317,7 +411,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Q2636DAEP4;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = Brewster;
@@ -329,11 +423,47 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.shmoopi.Brewster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		AABBCC121122334400112233 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.shmoopi.BrewsterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Brewster.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Brewster";
+			};
+			name = Debug;
+		};
+		AABBCC131122334400112233 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = net.shmoopi.BrewsterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Brewster.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Brewster";
 			};
 			name = Release;
 		};
@@ -354,6 +484,15 @@
 			buildConfigurations = (
 				4CB36CC02C434E0100A97A5D /* Debug */,
 				4CB36CC12C434E0100A97A5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AABBCC0C1122334400112233 /* Build configuration list for PBXNativeTarget "BrewsterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AABBCC121122334400112233 /* Debug */,
+				AABBCC131122334400112233 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
