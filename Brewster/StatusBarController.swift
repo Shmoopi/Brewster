@@ -611,7 +611,12 @@ class StatusBarController: NSObject, NSMenuDelegate {
 
     private func startTimer() {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: selectedInterval.timeInterval, target: self, selector: #selector(refreshUpdates), userInfo: nil, repeats: true)
+        timer = Timer(timeInterval: selectedInterval.timeInterval, repeats: true) { [weak self] _ in
+            self?.refreshUpdates()
+        }
+        if let timer = timer {
+            RunLoop.main.add(timer, forMode: .common)
+        }
         logger.debug("Timer started with interval: \(self.selectedInterval.rawValue)")
     }
 
