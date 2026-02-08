@@ -234,8 +234,22 @@ class StatusBarController: NSObject, NSMenuDelegate {
             return
         }
 
+        // Only rebuild the menu contents, don't recreate the statusItem
+        guard let menu = statusItem.menu else {
+            logger.error("Menu is nil during refresh")
+            return
+        }
+        
         clearAllMenuBarItems()
-        setupMenuBarItem()
+        statusItem.button?.title = "Brewing..."
+        
+        // Add "Updating Homebrew..." menubaritem
+        let updatingItem = NSMenuItem(title: "Updating Homebrew...", action: nil, keyEquivalent: "")
+        menu.addItem(updatingItem)
+        
+        // Add the bottom submenu
+        setupBottomMenu(menu)
+        
         checkForHomebrewUpdates()
     }
 
