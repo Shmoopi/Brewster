@@ -28,6 +28,10 @@ class MockHomebrewManager: HomebrewExecutable {
 
     var upgradeAllCallCount = 0
 
+    var installPackageCallCount = 0
+    var lastInstalledPackage: String?
+    var mockInstallResult: Result<Void, HomebrewError> = .success(())
+
     func runCommand(arguments: [String], timeout: TimeInterval) -> Result<String, HomebrewError> {
         runCommandCallCount += 1
         lastCommandArguments = arguments
@@ -52,6 +56,12 @@ class MockHomebrewManager: HomebrewExecutable {
         return mockUpgradeResult
     }
 
+    func installPackage(package: String) -> Result<Void, HomebrewError> {
+        installPackageCallCount += 1
+        lastInstalledPackage = package
+        return mockInstallResult
+    }
+
     // Helper to reset tracking
     func reset() {
         runCommandCallCount = 0
@@ -62,5 +72,7 @@ class MockHomebrewManager: HomebrewExecutable {
         upgradePackageCallCount = 0
         lastUpgradedPackage = nil
         upgradeAllCallCount = 0
+        installPackageCallCount = 0
+        lastInstalledPackage = nil
     }
 }

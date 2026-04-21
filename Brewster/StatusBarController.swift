@@ -418,6 +418,9 @@ class StatusBarController: NSObject, NSMenuDelegate {
         case .success:
             logger.info("Package upgrade completed successfully")
             self.checkForHomebrewUpdates()
+        case .failure(.userCancelled):
+            logger.info("Package upgrade cancelled by user")
+            self.refreshUpdates()
         case .failure(let error):
             logger.error("Package upgrade failed: \(error.localizedDescription)")
             self.showError(error: error)
@@ -503,6 +506,9 @@ class StatusBarController: NSObject, NSMenuDelegate {
         case .success:
             logger.info("Package \(package) installed successfully")
             self.showInstallSuccess(package: package)
+        case .failure(.userCancelled):
+            logger.info("Package install cancelled by user")
+            self.refreshUpdates()
         case .failure(let error):
             logger.error("Package install failed: \(error.localizedDescription)")
             self.showError(error: error)
