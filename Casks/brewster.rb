@@ -1,5 +1,5 @@
 cask "brewster" do
-  version "1.2.0"
+  version "1.2.1"
   sha256 "733bac336c98b4580ea33ff6a5ec65e9fa5880a136079827afbc0df5bcc4b63a"
 
   url "https://github.com/shmoopi/Brewster/releases/download/#{version}/Brewster.zip"
