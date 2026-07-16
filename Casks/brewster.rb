@@ -7,7 +7,7 @@ cask "brewster" do
   desc "macOS menu bar app that monitors Homebrew for package updates"
   homepage "https://github.com/shmoopi/Brewster"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Brewster.app"
 
